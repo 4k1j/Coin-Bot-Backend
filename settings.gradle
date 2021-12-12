@@ -1,0 +1,6 @@
+rootProject.name = 'coinbot'
+include 'coinbot-domain'
+include 'coinbot-infra'
+include 'coinbot-web'
+include 'coinbot-web'
+
