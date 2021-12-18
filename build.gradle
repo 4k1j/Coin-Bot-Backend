@@ -8,11 +8,23 @@ subprojects {
     group '4k1j.coinbot'
     version '1.0-SNAPSHOT'
 
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    sourceCompatibility = 15
+    targetCompatibility = 15
+
     repositories {
         mavenCentral()
     }
 
     dependencies {
+        // Lombok
+        compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+        annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+        testCompileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+        testAnnotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.20'
+
         testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
         testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
     }
