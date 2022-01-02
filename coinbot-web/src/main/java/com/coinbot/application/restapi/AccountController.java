@@ -1,7 +1,7 @@
-package com.coinbot.infra.exchange.restapi;
+package com.coinbot.application.restapi;
 
 import com.coinbot.infra.exchange.api.client.AccountClient;
-import com.coinbot.infra.exchange.dto.AccountResponse;
+import com.coinbot.infra.exchange.response.AccountResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

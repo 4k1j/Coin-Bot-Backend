@@ -1,4 +1,4 @@
-package com.coinbot.infra.exchange.dto;
+package com.coinbot.infra.exchange.response;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

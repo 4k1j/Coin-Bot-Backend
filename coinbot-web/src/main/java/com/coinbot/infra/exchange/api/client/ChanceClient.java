@@ -14,26 +14,26 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @Component
-public class AccountClient {
+public class ChanceClient {
 
-    public static final String ACCOUNTS_URL = UpbitApiPaths.BASE_SEVER_URL + "/accounts";
+    public static final String CHANCE_URL = UpbitApiPaths.BASE_SEVER_URL + "/orders/chance";
 
     private final JwtTokenProvider jwtTokenProvider;
     private final RestTemplate restTemplate;
 
-    public List<AccountResponse> getAccounts() {
+    public List<AccountResponse> getChance() {
         HttpHeaders headers = new HttpHeaders();
         headers.setBearerAuth(jwtTokenProvider.createToken());
         headers.setContentType(MediaType.APPLICATION_JSON);
         HttpEntity<?> entity = new HttpEntity<>(headers);
         return restTemplate.exchange(
-                ACCOUNTS_URL,
+                CHANCE_URL,
                 HttpMethod.GET,
                 entity,
                 new ParameterizedTypeReference<List<AccountResponse>>() {
-        }).getBody();
+                }).getBody();
     }
 }
-
