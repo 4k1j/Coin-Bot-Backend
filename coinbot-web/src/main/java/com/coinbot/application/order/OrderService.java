@@ -1,7 +1,9 @@
 package com.coinbot.application.order;
 
 import com.coinbot.infra.exchange.api.client.OrdersClient;
+import com.coinbot.infra.exchange.request.CancelRequest;
 import com.coinbot.infra.exchange.request.OrdersRequest;
+import com.coinbot.infra.exchange.response.CancelResponse;
 import com.coinbot.infra.exchange.response.OrdersResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -58,5 +60,9 @@ public class OrderService {
                 .orderType(orderType)
                 .build();
         return ordersClient.order(request);
+    }
+
+    public CancelResponse cancel(String uuid) throws NoSuchAlgorithmException {
+        return ordersClient.cancel(new CancelRequest(uuid));
     }
 }

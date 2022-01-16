@@ -2,6 +2,9 @@ package com.coinbot.infra.exchange.api.client;
 
 import com.coinbot.infra.auth.JwtTokenProvider;
 import com.coinbot.infra.exchange.api.UpbitApiPaths;
+import com.coinbot.infra.exchange.request.CancelRequest;
+import com.coinbot.infra.exchange.request.Request;
+import com.coinbot.infra.exchange.response.CancelResponse;
 import com.coinbot.infra.exchange.response.OrdersResponse;
 import com.coinbot.infra.exchange.request.OrdersRequest;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,6 +29,7 @@ import java.util.Map;
 public class OrdersClient {
 
     public static final String ORDERS_URL = UpbitApiPaths.BASE_SEVER_URL + "/orders";
+    public static final String ORDER_URL = UpbitApiPaths.BASE_SEVER_URL + "/order";
 
     private final JwtTokenProvider jwtTokenProvider;
     private final RestTemplate restTemplate;
@@ -33,7 +37,7 @@ public class OrdersClient {
     public OrdersResponse order(OrdersRequest request) throws NoSuchAlgorithmException {
 
         HttpHeaders headers = new HttpHeaders();
-        headers.setBearerAuth(jwtTokenProvider.createTokenWithParam(toQueryString(request)));
+        headers.setBearerAuth(jwtTokenProvider.createTokenWithParam(ClientHelper.toQueryString(request)));
         headers.setContentType(MediaType.APPLICATION_JSON);
 
         HttpEntity<OrdersRequest> entity = new HttpEntity<>(request, headers);
@@ -45,14 +49,19 @@ public class OrdersClient {
                 }).getBody();
     }
 
-    private String toQueryString(OrdersRequest request) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<String> queryElements = new ArrayList<>();
+    public CancelResponse cancel(CancelRequest request) throws NoSuchAlgorithmException {
+        HttpHeaders headers = new HttpHeaders();
+        String queryString = ClientHelper.toQueryString(request);
+        headers.setBearerAuth(jwtTokenProvider.createTokenWithParam(queryString));
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-        Map<String, String> params = objectMapper.convertValue(request, Map.class);
-        for(Map.Entry<String, String> entity : params.entrySet()) {
-            queryElements.add(entity.getKey() + "=" + entity.getValue());
-        }
-        return String.join("&", queryElements.toArray(new String[0]));
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+        return restTemplate.exchange(
+                ORDER_URL + "?" + queryString,
+                HttpMethod.DELETE,
+                entity,
+                new ParameterizedTypeReference<CancelResponse>() {
+                }).getBody();
     }
 }
+
