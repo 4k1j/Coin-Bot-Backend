@@ -1,5 +1,6 @@
 package com.coinbot.infra.exchange.response;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,13 +14,14 @@ import java.util.List;
 @NoArgsConstructor
 public class ChanceResponse {
 
-    private String bid_fee;
-    private String market;
-    private String marketId;
-    private String marketName;
-    private List<String> marketOrderTypes;
-    private List<String> marketOrderSides;
-    private Object marketBid ;
-    private String marketBidCurrency;
+    @JsonProperty("bid_fee")
+    private String bidFee;
+    @JsonProperty("ask_fee")
+    private String askFee;
+    private Object market;
+    @JsonProperty("bid_account")
+    private Object bidAccount;
+    @JsonProperty("ask_account")
+    private Object askAccount;
 
 }

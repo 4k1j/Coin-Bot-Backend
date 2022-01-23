@@ -10,7 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-public class OrdersRequest {
+public class OrdersRequest implements Request {
 
     private String market;
 
