@@ -24,7 +24,7 @@ public class OrdersController {
     @GetMapping("/orders")
     public ResponseEntity<OrdersResponse> order() {
         try {
-            return ResponseEntity.ok(orderService.orders(OrderPosition.BUY, "KRW-ONT", "10", "500")); // 지정가 매수
+            return ResponseEntity.ok(orderService.orders(OrderPosition.BUY, "KRW-STEEM", "10", "500")); // 지정가 매수
 //            return ResponseEntity.ok(orderService.orders(OrderPosition.BUY, "KRW-BTC", "5000")); // 시장가 매수
 //            return ResponseEntity.ok(orderService.orders(OrderPosition.SELL, "KRW-BTC", "0.00017316", "60000000")); // 지정가 매도
 //            return ResponseEntity.ok(orderService.orders(OrderPosition.SELL, "KRW-BTC", "0.00017316")); // 지정가 매도
