@@ -1,5 +1,0 @@
-rootProject.name = 'coinbot'
-include 'coinbot-worker-application'
-include 'coinbot-worker-infra'
-include 'coinbot-worker-domain'
-

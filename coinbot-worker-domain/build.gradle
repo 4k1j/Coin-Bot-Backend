@@ -1,9 +1,0 @@
-plugins{
-    id 'java'
-}
-
-dependencies {
-//    implementation 'org.springframework.boot:spring-boot-starter:2.5.6'
-
-}
-
