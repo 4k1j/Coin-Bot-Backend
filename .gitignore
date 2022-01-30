@@ -187,3 +187,5 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,java,gradle,intellij
+/coinbot-worker-application/src/main/resources/config/
+/.idea/
