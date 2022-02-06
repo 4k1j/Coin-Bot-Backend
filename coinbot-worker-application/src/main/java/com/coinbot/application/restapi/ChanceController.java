@@ -2,6 +2,7 @@ package com.coinbot.application.restapi;
 
 
 import com.coinbot.application.chance.ChanceService;
+import com.coinbot.application.chance.ChanceServiceImpl;
 import com.coinbot.infra.exchange.response.ChanceResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
